@@ -84,6 +84,7 @@ Key findings from the data analysis include:
 - Larger transaction amounts tend to have a slightly higher risk of fraud.
 - Fraudulent transactions increase during holiday seasons.
 - Fraudulent activities are more common during nighttime hours.
+  
   <img width="409" alt="Screenshot 2025-06-01 at 1 37 12 PM" src="https://github.com/user-attachments/assets/0683b9c3-cfa3-4986-982c-bc444c63065c" />
 
 
@@ -93,7 +94,7 @@ Model performance :
 - **Logistic Regression** and **XGBoost** underperformed due to:
   - Class imbalance
   - Inability to capture complex non-linear relationships
-    
+  
   <img width="1544" alt="Screenshot 2025-06-01 at 1 29 47 PM" src="https://github.com/user-attachments/assets/ecaacc37-a195-408b-9f63-53640d2ff767" />
 
 
