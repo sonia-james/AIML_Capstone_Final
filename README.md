@@ -29,11 +29,11 @@ The dataset used for this project is sourced from Kaggle:
 
 ---
 
-## ⚙️ Methodology
+##  Methodology
 
 To address the problem of credit card fraud detection, the following methods were used:
 
-### 🧹 Data Cleaning and Preparation
+###  Data Cleaning and Preparation
 
 - Handling missing values  
 - Encoding categorical variables:  
@@ -42,18 +42,18 @@ To address the problem of credit card fraud detection, the following methods wer
 - Scaling numerical features with StandardScaler  
 - Splitting data into training and testing sets (80:20) using stratified sampling to preserve class distribution  
 
-### 🔍 Exploratory Data Analysis (EDA)
+###  Exploratory Data Analysis (EDA)
 
 - Visualizing key features such as transaction amount, age, transaction time, and location  
 - Understanding patterns related to fraudulent behavior  
 
-### 🛠 Feature Engineering
+###  Feature Engineering
 
 - Extracted temporal features from timestamps (hour, day, weekend flag)  
 - Incorporated location data  
 - Calculated age from date of birth  
 
-### 🤖 Modeling
+###  Modeling
 
 We tested the following classification models:  
 
@@ -63,7 +63,7 @@ We tested the following classification models:
 
 All models addressed class imbalance using `class_weight='balanced'` or equivalent techniques.
 
-### 🔧 Hyperparameter Tuning and Model Persistence
+###  Hyperparameter Tuning and Model Persistence
 
 To improve model performance and handle class imbalance, hyperparameter tuning was performed using cross-validation. The best models were saved as `.pkl` files to avoid retraining:
 
@@ -105,7 +105,7 @@ To improve model performance and handle class imbalance, hyperparameter tuning w
 - **Class Imbalance Handling:** Computed `scale_pos_weight` parameter  
 - **Model Saved to:** `best_xgboost_model.pkl`  
 
-### 📊 Model Evaluation
+###  Model Evaluation
 
 Models were evaluated using the following metrics:
 
@@ -114,7 +114,7 @@ Models were evaluated using the following metrics:
 - **Precision & Recall:** Accuracy of fraud predictions  
 - **Confusion Matrix:** Breakdown of True Positives, False Positives, True Negatives, and False Negatives  
 
-### 📈 Model Comparison Summary
+###  Model Comparison Summary
 
 | Model             | ROC AUC | F1 Score | Precision | Recall | Accuracy |
 |-------------------|---------|----------|-----------|--------|----------|
