@@ -96,3 +96,9 @@ Model performance :
 
 
 ---  
+## Outline of project
+https://github.com/sonia-james/AIML_Capstone_Final/blob/main/Capstore_Fraud_Detection_Final.ipynb
+
+## Contact and Further Information
+Sonia James 
+LinkedIn : https://www.linkedin.com/in/sonia-james-6b1595a9/
