@@ -138,7 +138,7 @@ Key findings from the data analysis include:
 
 Model performance :
 
-- **Random Forest** significantly outperformed other models across all evaluation metrics.
+- **Random Forest significantly outperformed the other models across all evaluation metrics, achieving a ROC AUC score of 0.9945. This model is highly recommended for fraud detection due to its superior accuracy and reliability.**
 - **Logistic Regression** and **XGBoost** underperformed due to:
   - Class imbalance
   - Inability to capture complex non-linear relationships
