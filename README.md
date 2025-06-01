@@ -84,6 +84,8 @@ Key findings from the data analysis include:
 - Larger transaction amounts tend to have a slightly higher risk of fraud.
 - Fraudulent transactions increase during holiday seasons.
 - Fraudulent activities are more common during nighttime hours.
+  <img width="409" alt="Screenshot 2025-06-01 at 1 37 12 PM" src="https://github.com/user-attachments/assets/0683b9c3-cfa3-4986-982c-bc444c63065c" />
+
 
 Model performance :
 
@@ -101,4 +103,5 @@ https://github.com/sonia-james/AIML_Capstone_Final/blob/main/Capstore_Fraud_Dete
 
 ## Contact and Further Information
 Sonia James 
+
 LinkedIn : https://www.linkedin.com/in/sonia-james-6b1595a9/
