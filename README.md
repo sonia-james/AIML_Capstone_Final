@@ -29,98 +29,98 @@ The dataset used for this project is sourced from Kaggle:
 
 ---
 
-## Methodology
+## ⚙️ Methodology
 
 To address the problem of credit card fraud detection, the following methods were used:
 
-- **Data Cleaning and Preparation:**
-  Handling missing values, encoding categorical variables (using target encoding for high-cardinality features and one-hot encoding for low-cardinality features), and scaling numerical features to prepare the dataset for modeling.
+### 🧹 Data Cleaning and Preparation
 
-- **Exploratory Data Analysis (EDA):**  
-  Visualizing key features such as transaction amount, age, time of transaction, and location to understand patterns related to fraudulent behavior.
+- Handling missing values  
+- Encoding categorical variables:  
+  - Target Encoding for high-cardinality features (e.g., merchant, city, job)  
+  - One-Hot Encoding for low-cardinality features (e.g., category, state, is_weekend)  
+- Scaling numerical features with StandardScaler  
+- Splitting data into training and testing sets (80:20) using stratified sampling to preserve class distribution  
 
-- **Feature Engineering:**  
-  Extracting meaningful features from transaction timestamps (hour, day, weekend flag) and incorporating location data to help the model detect anomalies.
+### 🔍 Exploratory Data Analysis (EDA)
 
-## Modeling
+- Visualizing key features such as transaction amount, age, transaction time, and location  
+- Understanding patterns related to fraudulent behavior  
 
-We tested the following classification models:
+### 🛠 Feature Engineering
 
-- **Random Forest Classifier**
-- **Logistic Regression**
-- **XGBoost Classifier**
+- Extracted temporal features from timestamps (hour, day, weekend flag)  
+- Incorporated location data  
+- Calculated age from date of birth  
 
-All models handled class imbalance using `class_weight='balanced'` or equivalent techniques.
+### 🤖 Modeling
 
----
+We tested the following classification models:  
 
-## Tune Hyperparameter  and Persist Model
+- Random Forest Classifier  
+- Logistic Regression  
+- XGBoost Classifier  
 
-To improve model performance and address class imbalance in fraud detection, hyperparameter tuning was performed using cross-validation techniques. The best models were saved to avoid retraining in future runs in .pkl files.
+All models addressed class imbalance using `class_weight='balanced'` or equivalent techniques.
 
----
+### 🔧 Hyperparameter Tuning and Model Persistence
 
-### **Logistic Regression** (GridSearchCV)
+To improve model performance and handle class imbalance, hyperparameter tuning was performed using cross-validation. The best models were saved as `.pkl` files to avoid retraining:
+
+#### Logistic Regression (GridSearchCV)
 
 - **Tuning Technique:** Grid Search with 5-fold Cross-Validation  
 - **Scoring Metric:** ROC AUC  
 - **Parameters Tuned:**  
-  - `C`: `[0.01, 0.1, 1, 10]` (Regularization strength)  
-  - `penalty`: `['l1', 'l2']` (Regularization type)  
-  - `solver`: `['liblinear', 'saga']` (Solvers supporting both l1 and l2)  
+  - `C`: [0.01, 0.1, 1, 10] (Regularization strength)  
+  - `penalty`: ['l1', 'l2'] (Regularization type)  
+  - `solver`: ['liblinear', 'saga'] (Solvers supporting both l1 and l2)  
 - **Class Imbalance Handling:** `class_weight='balanced'`  
 - **Model Saved to:** `best_logistic_regression_model.pkl`  
 
----
-
-### **Random Forest Classifier** (RandomizedSearchCV)
+#### Random Forest Classifier (RandomizedSearchCV)
 
 - **Tuning Technique:** Randomized Search with 3-fold Cross-Validation (30 iterations)  
 - **Scoring Metric:** ROC AUC  
 - **Parameters Tuned:**  
-  - `n_estimators`: `[100, 200, 300]`  
-  - `max_depth`: `[None, 10, 20, 30]`  
-  - `min_samples_split`: `[2, 5, 10]`  
-  - `min_samples_leaf`: `[1, 2, 4]`  
-  - `max_features`: `['sqrt', 'log2']`  
-  - `bootstrap`: `[True, False]`  
+  - `n_estimators`: [100, 200, 300]  
+  - `max_depth`: [None, 10, 20, 30]  
+  - `min_samples_split`: [2, 5, 10]  
+  - `min_samples_leaf`: [1, 2, 4]  
+  - `max_features`: ['sqrt', 'log2']  
+  - `bootstrap`: [True, False]  
 - **Class Imbalance Handling:** `class_weight='balanced'`  
 - **Model Saved to:** `best_random_forest_model.pkl`  
 
----
-
-### **XGBoost Classifier** (GridSearchCV)
+#### XGBoost Classifier (GridSearchCV)
 
 - **Tuning Technique:** Grid Search with 5-fold Cross-Validation  
 - **Scoring Metric:** ROC AUC  
 - **Parameters Tuned:**  
-  - `n_estimators`: `[100, 200]`  
-  - `max_depth`: `[3, 5]`  
-  - `learning_rate`: `[0.05, 0.1]`  
-  - `subsample`: `[0.8, 1.0]`  
-  - `colsample_bytree`: `[0.8, 1.0]`  
+  - `n_estimators`: [100, 200]  
+  - `max_depth`: [3, 5]  
+  - `learning_rate`: [0.05, 0.1]  
+  - `subsample`: [0.8, 1.0]  
+  - `colsample_bytree`: [0.8, 1.0]  
 - **Class Imbalance Handling:** Computed `scale_pos_weight` parameter  
 - **Model Saved to:** `best_xgboost_model.pkl`  
 
-## Model Evaluation
+### 📊 Model Evaluation
 
-Models were evaluated using:
+Models were evaluated using the following metrics:
 
-- **ROC AUC Score** – Area under the ROC curve  
-- **F1 Score** – Harmonic mean of precision and recall  
-- **Precision & Recall** – Accuracy of fraud predictions  
-- **Confusion Matrix** – TP, FP, TN, FN breakdown
+- **ROC AUC Score:** Area under the ROC curve  
+- **F1 Score:** Harmonic mean of precision and recall  
+- **Precision & Recall:** Accuracy of fraud predictions  
+- **Confusion Matrix:** Breakdown of True Positives, False Positives, True Negatives, and False Negatives  
 
----
+### 📈 Model Comparison Summary
 
-###  Model Comparison
-
-| Model                | ROC AUC | F1 Score | Precision | Recall | Accuracy |
-|----------------------|---------|----------|-----------|--------|----------|
-|   Random Forest      | **0.9945** | **0.8414** | **0.9537** | **0.7528** | **0.9985** |
-|   Logistic Regression| 0.9334  | 0.0841   | 0.0445    | 0.7753 | 0.9115   |
-|   XGBoost            | 0.8796  | 0.0447   | 0.1915    | 0.0253 | 0.9943   |
-
+| Model             | ROC AUC | F1 Score | Precision | Recall | Accuracy |
+|-------------------|---------|----------|-----------|--------|----------|
+| **Random Forest**  | 0.9945  | 0.8414   | 0.9537    | 0.7528 | 0.9985   |
+| **Logistic Reg.**  | 0.9334  | 0.0841   | 0.0445    | 0.7753 | 0.9115   |
+| **XGBoost**        | 0.8796  | 0.0447   | 0.1915    | 0.0253 | 0.9943   |
 
 ---
 
