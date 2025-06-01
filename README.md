@@ -54,6 +54,54 @@ All models handled class imbalance using `class_weight='balanced'` or equivalent
 
 ---
 
+## Hyperparameter Tune and Persist Model
+
+To improve model performance and address class imbalance in fraud detection, hyperparameter tuning was performed using cross-validation techniques. The best models were saved to avoid retraining in future runs in .pkl files.
+
+---
+
+### **Logistic Regression** (GridSearchCV)
+
+- **Tuning Technique:** Grid Search with 5-fold Cross-Validation  
+- **Scoring Metric:** ROC AUC  
+- **Parameters Tuned:**  
+  - `C`: `[0.01, 0.1, 1, 10]` (Regularization strength)  
+  - `penalty`: `['l1', 'l2']` (Regularization type)  
+  - `solver`: `['liblinear', 'saga']` (Solvers supporting both l1 and l2)  
+- **Class Imbalance Handling:** `class_weight='balanced'`  
+- **Model Saved to:** `best_logistic_regression_model.pkl`  
+
+---
+
+### **Random Forest Classifier** (RandomizedSearchCV)
+
+- **Tuning Technique:** Randomized Search with 3-fold Cross-Validation (30 iterations)  
+- **Scoring Metric:** ROC AUC  
+- **Parameters Tuned:**  
+  - `n_estimators`: `[100, 200, 300]`  
+  - `max_depth`: `[None, 10, 20, 30]`  
+  - `min_samples_split`: `[2, 5, 10]`  
+  - `min_samples_leaf`: `[1, 2, 4]`  
+  - `max_features`: `['sqrt', 'log2']`  
+  - `bootstrap`: `[True, False]`  
+- **Class Imbalance Handling:** `class_weight='balanced'`  
+- **Model Saved to:** `best_random_forest_model.pkl`  
+
+---
+
+### **XGBoost Classifier** (GridSearchCV)
+
+- **Tuning Technique:** Grid Search with 5-fold Cross-Validation  
+- **Scoring Metric:** ROC AUC  
+- **Parameters Tuned:**  
+  - `n_estimators`: `[100, 200]`  
+  - `max_depth`: `[3, 5]`  
+  - `learning_rate`: `[0.05, 0.1]`  
+  - `subsample`: `[0.8, 1.0]`  
+  - `colsample_bytree`: `[0.8, 1.0]`  
+- **Class Imbalance Handling:** Computed `scale_pos_weight` parameter  
+- **Model Saved to:** `best_xgboost_model.pkl`  
+
 ## Model Evaluation
 
 Models were evaluated using:
