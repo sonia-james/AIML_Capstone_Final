@@ -54,7 +54,7 @@ All models handled class imbalance using `class_weight='balanced'` or equivalent
 
 ---
 
-## Hyperparameter Tune and Persist Model
+## Tune Hyperparameter  and Persist Model
 
 To improve model performance and address class imbalance in fraud detection, hyperparameter tuning was performed using cross-validation techniques. The best models were saved to avoid retraining in future runs in .pkl files.
 
